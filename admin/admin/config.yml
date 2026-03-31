@@ -1,0 +1,74 @@
+backend:
+  name: github
+  repo: topcuyasar258-wq/tncy-website
+  branch: main
+
+media_folder: images/uploads
+public_folder: /images/uploads
+
+locale: tr
+
+collections:
+  - name: urunler
+    label: Ürünler
+    label_singular: Ürün
+    folder: _urunler
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Ürün Adı, name: ad, widget: string }
+      - { label: Fiyat (₺), name: fiyat, widget: number }
+      - label: Kategori
+        name: kategori
+        widget: select
+        options:
+          - { label: Elbiseler, value: elbise }
+          - { label: Üstler, value: ust }
+          - { label: Altlar, value: alt }
+          - { label: Dış Giyim, value: dis }
+          - { label: Aksesuarlar, value: aksesuar }
+      - { label: Ürün Fotoğrafı, name: fotograf, widget: image }
+      - { label: Açıklama, name: aciklama, widget: text, required: false }
+      - label: Beden Seçenekleri
+        name: bedenler
+        widget: select
+        multiple: true
+        options: [XS, S, M, L, XL, XXL]
+      - label: Rozet (opsiyonel)
+        name: rozet
+        widget: select
+        required: false
+        options:
+          - { label: Çok Satan 🔥, value: "🔥 Çok Satan" }
+          - { label: Yeni ⭐, value: "⭐ Yeni" }
+          - { label: Favori ❤️, value: "❤️ Favori" }
+          - { label: İndirim, value: "İndirim" }
+      - label: Öne Çıkar (Ana Sayfada Göster)
+        name: one_cikan
+        widget: boolean
+        default: false
+      - label: Stokta Var
+        name: stokta
+        widget: boolean
+        default: true
+
+  - name: site_ayarlari
+    label: Site Ayarları
+    files:
+      - label: Genel Ayarlar
+        name: genel
+        file: _data/ayarlar.json
+        fields:
+          - { label: Promosyon Bandı Metni, name: promo_metin, widget: string }
+          - { label: Ücretsiz Kargo Limiti (₺), name: kargo_limiti, widget: number }
+          - { label: Instagram Kullanıcı Adı, name: instagram, widget: string }
+          - { label: Hero Başlık, name: hero_baslik, widget: string }
+          - { label: Hero Alt Başlık, name: hero_slogan, widget: string }
+          - { label: Hero Görseli, name: hero_gorsel, widget: image, required: false }
+      - label: Flash İndirim
+        name: flash_indirim
+        file: _data/indirim.json
+        fields:
+          - { label: İndirim Aktif, name: aktif, widget: boolean, default: false }
+          - { label: İndirim Oranı (%), name: oran, widget: number }
+          - { label: Başlık Metni, name: baslik, widget: string }
