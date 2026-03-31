@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: GITHUB_KULLANICI_ADIN/tncy-website
+  repo: topcuyasar258-wq/tncy-website
   branch: main
 
 media_folder: images/uploads
@@ -62,16 +62,9 @@ collections:
           - { label: Promosyon Bandı Metni, name: promo_metin, widget: string }
           - { label: Ücretsiz Kargo Limiti (₺), name: kargo_limiti, widget: number }
           - { label: Instagram Kullanıcı Adı, name: instagram, widget: string }
-          - label: Hero Başlık
-            name: hero_baslik
-            widget: string
-          - label: Hero Alt Başlık
-            name: hero_slogan
-            widget: string
-          - label: Hero Görseli
-            name: hero_gorsel
-            widget: image
-            required: false
+          - { label: Hero Başlık, name: hero_baslik, widget: string }
+          - { label: Hero Alt Başlık, name: hero_slogan, widget: string }
+          - { label: Hero Görseli, name: hero_gorsel, widget: image, required: false }
       - label: Flash İndirim
         name: flash_indirim
         file: _data/indirim.json
