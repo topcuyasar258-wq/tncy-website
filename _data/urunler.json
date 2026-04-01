@@ -1,0 +1,92 @@
+{
+  "urunler": [
+    {
+      "ad": "Oversized Keten Ceket",
+      "fiyat": 1290,
+      "kategori": "dis",
+      "fotograf": "https://images.unsplash.com/photo-1591195853828-11db59a44f43?w=600&q=80&fit=crop",
+      "aciklama": "Yaz sezonunun vazgeçilmezi, rahat kesim keten ceket.",
+      "bedenler": ["XS", "S", "M", "L", "XL"],
+      "rozet": "",
+      "one_cikan": true,
+      "stokta": true
+    },
+    {
+      "ad": "Siyah Midi Elbise",
+      "fiyat": 1890,
+      "kategori": "elbise",
+      "fotograf": "https://images.unsplash.com/photo-1618932260643-eee4a2f652a6?w=600&q=80&fit=crop",
+      "aciklama": "Zarif kesim, her ortama uygun siyah midi elbise.",
+      "bedenler": ["XS", "S", "M", "L"],
+      "rozet": "❤️ Favori",
+      "one_cikan": true,
+      "stokta": true
+    },
+    {
+      "ad": "Krep Trençkot",
+      "fiyat": 2450,
+      "kategori": "dis",
+      "fotograf": "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=600&q=80&fit=crop",
+      "aciklama": "Kaliteli krep kumaştan üretilen klasik trençkot.",
+      "bedenler": ["S", "M", "L", "XL"],
+      "rozet": "⭐ Yeni",
+      "one_cikan": true,
+      "stokta": true
+    },
+    {
+      "ad": "Nude Kuşaklı Elbise",
+      "fiyat": 1490,
+      "kategori": "elbise",
+      "fotograf": "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=500&q=80&fit=crop",
+      "aciklama": "Kuşaklı tasarım, şık ve feminen.",
+      "bedenler": ["XS", "S", "M", "L"],
+      "rozet": "",
+      "one_cikan": false,
+      "stokta": true
+    },
+    {
+      "ad": "Siyah Palazzo Pantolon",
+      "fiyat": 1190,
+      "kategori": "alt",
+      "fotograf": "https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?w=500&q=80&fit=crop&crop=top",
+      "aciklama": "Bol kesim, rahat ve şık palazzo pantolon.",
+      "bedenler": ["XS", "S", "M", "L", "XL"],
+      "rozet": "🔥 Çok Satan",
+      "one_cikan": false,
+      "stokta": true
+    },
+    {
+      "ad": "Kırmızı Midi Etek",
+      "fiyat": 990,
+      "kategori": "alt",
+      "fotograf": "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=500&q=80&fit=crop&crop=top",
+      "aciklama": "Göz alıcı kırmızı, midi boy etek.",
+      "bedenler": ["XS", "S", "M", "L"],
+      "rozet": "❤️ Favori",
+      "one_cikan": false,
+      "stokta": true
+    },
+    {
+      "ad": "Pastel Lila Set",
+      "fiyat": 1790,
+      "kategori": "ust",
+      "fotograf": "https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=500&q=80&fit=crop&crop=top",
+      "aciklama": "Pastel lila rengiyle şık iki parça takım.",
+      "bedenler": ["XS", "S", "M", "L"],
+      "rozet": "⭐ Yeni",
+      "one_cikan": false,
+      "stokta": true
+    },
+    {
+      "ad": "Ekru Blazer",
+      "fiyat": 1650,
+      "kategori": "dis",
+      "fotograf": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&q=80&fit=crop&crop=top",
+      "aciklama": "Ofisten akşam yemeğine her ortama uygun ekru blazer.",
+      "bedenler": ["XS", "S", "M", "L", "XL"],
+      "rozet": "🔥 Çok Satan",
+      "one_cikan": false,
+      "stokta": true
+    }
+  ]
+}

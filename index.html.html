@@ -1815,7 +1815,7 @@
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
-<div style="background:var(--black);color:var(--white);text-align:center;padding:12px 20px;font-family:'Jost',sans-serif;font-size:0.65rem;font-weight:300;letter-spacing:0.28em;text-transform:uppercase;position:fixed;top:0;left:0;right:0;z-index:200;">#HOŞGELDİN20 KODU İLE İLK SİPARİŞİNİZE SEPETTE EKSTRA %20 İNDİRİM</div>
+<div id="promo-bar" style="background:var(--black);color:var(--white);text-align:center;padding:12px 20px;font-family:'Jost',sans-serif;font-size:0.65rem;font-weight:300;letter-spacing:0.28em;text-transform:uppercase;position:fixed;top:0;left:0;right:0;z-index:200;">#HOŞGELDİN20 KODU İLE İLK SİPARİŞİNİZE SEPETTE EKSTRA %20 İNDİRİM</div>
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
@@ -1859,8 +1859,8 @@
 <section class="hero">
   <div class="hero-left">
     <span class="hero-eyebrow">İlkbahar / Yaz 2026 Koleksiyonu</span>
-    <h1 class="hero-brand">TNCY</h1>
-    <p class="hero-slogan">Zamansız zarafet,<br>modern kadının ruhuyla buluşuyor.</p>
+    <h1 class="hero-brand" id="hero-brand">TNCY</h1>
+    <p class="hero-slogan" id="hero-slogan">Zamansız zarafet,<br>modern kadının ruhuyla buluşuyor.</p>
     <div class="hero-ctas">
       <a href="#" class="btn-primary">Koleksiyonu Keşfet</a>
       <a href="#" class="btn-secondary">Yeni Sezon</a>
@@ -1902,7 +1902,7 @@
     <h2 class="collections-title">Öne Çıkan<br><em>Koleksiyonlar</em></h2>
     <a href="#" class="collections-link">Tümünü Gör →</a>
   </div>
-  <div class="grid-3 reveal">
+  <div class="grid-3 reveal" id="featured-products">
     <div class="product-card">
       <div class="product-img" style="padding:0;background:#e8e2d8;">
         <img src="https://images.unsplash.com/photo-1591195853828-11db59a44f43?w=600&q=80&fit=crop" style="width:100%;height:100%;object-fit:cover;display:block;" alt="Oversized Keten Ceket">
@@ -2010,9 +2010,9 @@
 </section>
 
 <!-- FLASH SALE COUNTDOWN -->
-<div class="countdown-bar reveal">
+<div class="countdown-bar reveal" id="flash-bar">
   <div class="countdown-inner">
-    <span class="countdown-label">⚡ Flaş İndirim — Süreli Teklif</span>
+    <span class="countdown-label" id="flash-label">⚡ Flaş İndirim — Süreli Teklif</span>
     <div class="countdown-timer">
       <div class="cd-block"><span id="cdH">08</span><small>Saat</small></div>
       <div class="cd-sep">:</div>
@@ -2020,7 +2020,7 @@
       <div class="cd-sep">:</div>
       <div class="cd-block"><span id="cdS">12</span><small>Saniye</small></div>
     </div>
-    <a href="#" class="countdown-cta">%30 İndirimli Ürünleri Gör →</a>
+    <a href="#" class="countdown-cta" id="flash-cta">%30 İndirimli Ürünleri Gör →</a>
   </div>
 </div>
 
@@ -2305,7 +2305,7 @@
   <div class="ig-header reveal">
     <div class="ig-title">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-      @tncys
+      <span id="ig-username">@tncys</span>
     </div>
     <a href="#" class="collections-link">Takip Et →</a>
   </div>
@@ -2507,6 +2507,130 @@
       if (Math.abs(diff) > 50) slideMove(diff > 0 ? 1 : -1);
     });
   }
+</script>
+
+<!-- Netlify Identity -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on('init', user => {
+      if (!user) {
+        window.netlifyIdentity.on('login', () => {
+          document.location.href = '/admin/';
+        });
+      }
+    });
+  }
+</script>
+
+<!-- Dynamic content from JSON -->
+<script>
+(async function loadSiteData() {
+  // --- Helper ---
+  async function fetchJSON(url) {
+    try {
+      const r = await fetch(url);
+      if (!r.ok) return null;
+      return await r.json();
+    } catch (_) { return null; }
+  }
+
+  // --- Settings ---
+  const s = await fetchJSON('/_data/ayarlar.json');
+  if (s) {
+    const promoEl = document.getElementById('promo-bar');
+    if (promoEl && s.promo_metin) promoEl.textContent = s.promo_metin;
+
+    const heroTitleEl = document.getElementById('hero-brand');
+    if (heroTitleEl && s.hero_baslik) heroTitleEl.textContent = s.hero_baslik;
+
+    const heroSloganEl = document.getElementById('hero-slogan');
+    if (heroSloganEl && s.hero_slogan) {
+      heroSloganEl.innerHTML = s.hero_slogan.replace(/\n/g, '<br>');
+    }
+
+    if (s.hero_gorsel) {
+      const heroImg = document.querySelector('.hero-img-placeholder');
+      if (heroImg) heroImg.src = s.hero_gorsel;
+    }
+
+    const igEl = document.getElementById('ig-username');
+    if (igEl && s.instagram) igEl.textContent = '@' + s.instagram;
+
+    // Update ticker free shipping amount
+    if (s.kargo_limiti) {
+      document.querySelectorAll('.ticker-item').forEach(el => {
+        if (el.textContent.includes('Ücretsiz Kargo')) {
+          el.textContent = 'Ücretsiz Kargo ' + s.kargo_limiti + '₺ Üzeri';
+        }
+      });
+    }
+  }
+
+  // --- Flash sale ---
+  const ind = await fetchJSON('/_data/indirim.json');
+  if (ind !== null) {
+    const flashBar = document.getElementById('flash-bar');
+    if (flashBar) {
+      flashBar.style.display = ind.aktif ? '' : 'none';
+      if (ind.aktif) {
+        const labelEl = document.getElementById('flash-label');
+        if (labelEl && ind.baslik) labelEl.textContent = ind.baslik;
+        const ctaEl = document.getElementById('flash-cta');
+        if (ctaEl && ind.oran) ctaEl.textContent = '%' + ind.oran + ' İndirimli Ürünleri Gör →';
+      }
+    }
+  }
+
+  // --- Products ---
+  const pd = await fetchJSON('/_data/urunler.json');
+  if (pd) {
+    const products = Array.isArray(pd) ? pd : (pd.urunler || []);
+    if (products.length > 0) {
+      renderFeatured(products.filter(p => p.one_cikan));
+      renderTrending(products);
+    }
+  }
+})();
+
+function renderFeatured(products) {
+  const grid = document.getElementById('featured-products');
+  if (!grid || products.length === 0) return;
+  grid.innerHTML = products.slice(0, 3).map(p => `
+    <div class="product-card">
+      <div class="product-img" style="padding:0;background:#e8e2d8;">
+        <img src="${p.fotograf || ''}" style="width:100%;height:100%;object-fit:cover;display:block;" alt="${escHtml(p.ad)}" onerror="this.style.display='none'">
+        <div class="product-overlay"><a href="#">Hızlı Görüntüle →</a></div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">${escHtml(p.ad)}</div>
+        <div class="product-price">${Number(p.fiyat).toLocaleString('tr-TR')} ₺</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderTrending(products) {
+  const track = document.getElementById('trendingTrack');
+  if (!track || products.length === 0) return;
+  track.innerHTML = products.map(p => `
+    <div class="trending-card">
+      <div class="trending-img">
+        <img src="${p.fotograf || ''}" alt="${escHtml(p.ad)}" onerror="this.style.display='none'">
+        ${p.rozet ? `<div class="trending-badge">${escHtml(p.rozet)}</div>` : ''}
+        <div class="product-overlay"><a href="#">Hızlı Görüntüle →</a></div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">${escHtml(p.ad)}</div>
+        <div class="product-price">${Number(p.fiyat).toLocaleString('tr-TR')} ₺</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function escHtml(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
 </script>
 </body>
 </html>
